@@ -1,4 +1,4 @@
-// function a(arg, arg2) {}
+/// function a(arg, arg2) {}
 // arguments, parameters, 인자, 매개변수 ...
 
 // $.get(url, cb);
@@ -24,9 +24,10 @@ $("#bt").click(function(){
 // 7days: https://api.openweathermap.org/data/2.5/onecall?lat=38&lon=127&appid=a3cc7d1ddfb0e5a69dee51212124fe81&units=metric&exclude=minutely,hourly  <-- get 방식
 
 /*************************전역설정********************/
+var map;
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather';//요청하는 곳의 주소
 var params = {
-	appid: '02efdd64bdc14b279bc91d9247db4722',// 고정값
+	appid: 'a3cc7d1ddfb0e5a69dee51212124fe81',// 고정값
 	units: 'metric',
 	exclude: 'minutely,hourly'
 }
@@ -35,29 +36,68 @@ var params = {
 navigator.geolocation.getCurrentPosition(onGetPosition, onGetPositionError); //네비게이터 객체가 가지고 있는 지오로케이션함수의 getCurrentPosition();를 실행 한것, 괄호 열고 닫으면 실행한것.
 //두개의 콜백을 넣어줌. ->(onGetPosition, onGetPositionError);
 
+mapInit();
 
-/*************************이벤트콜백********************/
+/****************** 이벤트콜백 *******************/
 function onGetPosition(r) {
 	getWeather(r.coords.latitude, r.coords.longitude);
 }
 
 function onGetPositionError(e) {
-		// 37.566679, 126.978413
 	getWeather(37.566679, 126.978413);
 }
-  //console.log(e); // 받아서 실행해라, 콜백을 위임해둔것.
 
-	function onGetWeather(r) {
-		console.log(r);
-		console.log(r.weather[0].icon);
-		updateBg(r.weather[0].icon);
+function onGetWeather(r) {
+	console.log(r);
+	console.log(r.weather[0].icon);
+	updateBg(r.weather[0].icon);
+}
+
+function onGetCity(r) {
+	createMarker(r.cities);
+	// 변경할 사항은 위의 createMarker를 실행하지 않고, openweathermap 통신으로 날씨정보를 받아오는게 완료되면 그때 그 정보로 marker를 만든다.
+}
+
+/****************** 사용자함수 *******************/
+function createMarker(v) {
+	for(var i in v) {
+		var content = '';
+		content += '<div class="popper '+v[i].class+'">';
+		content += '<div class="img-wrap">';
+		content += '<img src="http://openweathermap.org/img/wn/02d.png" class="mw-100">';
+		content += '</div>';
+		content += '<div class="cont-wrap">';
+		content += '<div class="name">'+v[i].name+'</div>';
+		content += '<div class="temp">-3.57도</div>';
+		content += '</div>';
+		content += '<i class="fa fa-caret-down"></i>';
+		content += '</div>';
+		var position = new kakao.maps.LatLng(v[i].lat, v[i].lon); 
+		var customOverlay = new kakao.maps.CustomOverlay({
+			position: position,
+			content: content
+		});
+		customOverlay.setMap(map);
 	}
+}
 
-/*************************사용자함수********************/
+
 function getWeather(lat, lon) {
-	params.lat = lat;//파람스의 랫은 랫의 정보를 넣고,
-	params.lon = lon;//파람스의 론은 론의 정보를 넣고,
+	params.lat = lat;
+	params.lon = lon;
 	$.get(weatherUrl, params, onGetWeather);
+}
+
+function mapInit() {
+	var mapOption = { 
+		center: new kakao.maps.LatLng(35.8, 127.7),  // 지도의 중심좌표
+		level: 13 // 지도의 확대 레벨
+	};
+	map = new kakao.maps.Map($('#map')[0], mapOption); // 지도 표시, 지도 옵션
+	map.setDraggable(false);
+	map.setZoomable(false);
+	
+	$.get('../json/city.json', onGetCity);
 }
 
 function updateBg(icon) {
@@ -106,7 +146,7 @@ function updateBg(icon) {
 			bg = '50n-bg.jpg';
 			break;
 	}
-	$(".wrapper").css('background-image', 'url(../img/'+bg+')');
+	$(".all-wrapper").css('background-image', 'url(../img/'+bg+')');
 }
 
 
