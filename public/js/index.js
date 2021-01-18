@@ -63,7 +63,6 @@ function onGetWeather(r) {
 	updateBg(r.weather[0].icon); //updateBg라는 함수를 실행할 건데, 거기에 (r.weather[0].icon)을 보내준다.
 }
 
-
 function onGetCity(r) {
 	//createMarker(r.cities);
 	// 변경할 사항은 위의 createMarker를 실행하지 않고, openweathermap 통신으로 날씨정보를 받아오는게 완료되면 그때 그 정보로 marker를 만든다.
