@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap');
 
 /******** 공통사항 *********/
-html, body {font-family: 'Sunflower', sans-serif; line-height: 1;}
+html, body {font-family: 'Sunflower', sans-serif; line-height: 1; font-weight: lighter;}
 .wrapper {max-width: 1200px; margin: auto;}
 
 .bt-arrow {font-size: 2em; position: absolute; top: 50%; transform: translateY(-50%); z-index: 9; cursor: pointer; outline: none; opacity: .4;}
@@ -9,43 +9,42 @@ html, body {font-family: 'Sunflower', sans-serif; line-height: 1;}
 .bt-next {right: -5px;}
 
 /******** 전체 *********/
-.all-wrapper {width: 100%; min-height: 100vh; position: relative; background-repeat: no-repeat; background-position: center; background-size: cover; padding: 3%; color: #f9f9f9;}
+.background-wrapper {width: 100%; min-height: 100vh; background-repeat: no-repeat; background-position: center; background-size: cover; position: relative; color: #f9f9f9; position:relative; }
 
+.all-wrapper {width: 80%; min-height: 100vh; position: absolute; padding: 3%; top: 0; right: 0;}
 /******** 타이틀 *********/
-.title-wrapper {display: flex; justify-content: center; align-items: center; margin-bottom: 2em;}
-.title-wrapper .version {text-align: right; transform: translate(15px, 2px);}
-.title-wrapper .img-wrap {transform: translate(10px, -5px);}
+.title-wrapper {display: flex; justify-content: center; align-items: center; width: 100%; height: 3em;}
+.title-wrapper .title {position: absolute; top: 2em; left: 2em; font-weight: bold; font-size: 1.25em;}
 
 /******** 날씨 *********/
-.cont-wrapper {display: flex; justify-content: space-between;}
-.cont-wrapper > .map-wrap {width: 400px; flex: 0 0 400px; height: 600px; border-radius: 8px;}
+.cont-wrapper {display: flex; justify-content: space-between; margin-top: 3em;}
+.cont-wrapper > .map-wrap {width: 400px; flex: 0 0 400px; height: 600px; border-radius: 5px;}
 .cont-wrapper > .city-wrap {display: none;} 
 .cont-wrapper > .weather-wrap {width: calc(95% - 400px); height: 600px; flex: 0 1 100%; margin-left: 5%; display: flex; flex-direction: column;}
 
 .cont-wrapper > .weather-wrap > div {flex: 0 0;}
 .cont-wrapper > .weather-wrap > :last-child {flex: 1 0;}
 
-.popper {display: flex; align-items: center; padding-right: 3px;  position: absolute; background-color: rgba(9, 57, 88, 0.9); color: #f9f9f9; border-radius: 4px; text-align: center; font-weight: lighter; font-size: 0.75em; top: -48px; cursor: pointer;}
-.popper.lt {left: 0;}
+.popper {display: flex; flex-direction: column; align-items: center;position: absolute; width: 55px; height: 55px; background-color: rgba(198, 198, 198, 0.6); color: #111; border-radius: 50%; border: 1px solid #111; text-align: center; font-weight: lighter; font-size: 0.75em; top: -61px;  cursor: pointer;}
+.popper.lt {left: 0px;}
 .popper.ct {left: -30px;}
-.popper.rt {left: -60px;}
+.popper.rt {left: -50px;}
 .popper.lt > .fa {left: 6px;}
 .popper.ct > .fa {left: calc(50% - 5px);}
 .popper.rt > .fa {right: 6px;}
-.popper .img-wrap {width: 35px;}
-.popper .name {margin-bottom: 2px;}
-.popper .fa {color: rgba(9, 57, 88, 0.9); position: absolute; bottom: -10px; font-size: 1.5em;}
+.popper .img-wrap {width: 35px; position: relative;}
+.popper .fa {color: rgba(29, 29, 29, 0.9); position: absolute; bottom: -12px; font-size: 1.25em;}
 
 .city-wrap {width: 100%; position: relative; padding: 0 3%;}
-.city-wrap .city {border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; overflow: hidden; cursor: pointer;}
+.city-wrap .city { border-radius: 8px; overflow: hidden; cursor: pointer;}
 .city-wrap .city > .name {text-align: center; padding: 8px; font-size: 1.25em; background-color: rgba(0,0,0,0.7);}
-.city-wrap .city > .content {display: flex; align-items:center; line-height: 1.2; padding: 4px 12px 0 4px; background-color: rgba(0,0,0,0.4);}
+.city-wrap .city > .content {display: flex; align-items:center; line-height: 1.2; padding: 4px 12px 0 4px; background-color: rgba(0,0,0,0.3);}
 
-.daily-container {background-color: rgba(0,0,0,0.6); border-radius: 8px; padding: 1.5em;}
-.daily-container .city {text-align: center; margin-bottom: 0.75em;}
+.daily-container {background-color: rgba(0,0,0,0.3); border-radius: 5px; padding: 1.5em;}
+.daily-container .city {text-align: center; margin-bottom: 0.5em;}
 .daily-container .info-wrapper {display: flex; flex-wrap: wrap; align-items: center; justify-content: center;}
 .daily-container .info-wrapper .temp-wrap {margin: 0 2em 0 1em; text-align: center;}
-.daily-container .info-wrapper .temp-wrap h3 {font-size: 3em; line-height: 1;}
+.daily-container .info-wrapper .temp-wrap h3 {font-size: 2em; line-height: 1;}
 .daily-container .info-wrapper .info-wrap > div {padding: 0.25em 0;}
 .daily-container .info-wrapper .info-wrap > .date {margin-top: 0.75em; font-size: 0.875em;}
 .daily-container .info-wrapper .info-wrap .main {font-size: 1.75em;}
@@ -58,7 +57,7 @@ html, body {font-family: 'Sunflower', sans-serif; line-height: 1;}
 .weekly-container {margin-top: 2em; border-top: 1px solid rgba(255,255,255,0.3); padding: 1em; width: 100%; overflow-y: auto; overflow-x: hidden;}
 
 .weekly-container > div {display: flex; align-items: center; padding: 0.25em 0;}
-.weekly-container .yoil {min-width: 150px; font-size: 1.25em;}
+.weekly-container .yoil {min-width: 150px; font-size: 1em;}
 .weekly-container .icon {margin-right: 2em;}
 .weekly-container .desc {margin-right: auto;}
 .weekly-container .min {min-width: 80px; text-align: right; color: rgba(255,255,255,0.7)}
@@ -92,9 +91,8 @@ html, body {font-family: 'Sunflower', sans-serif; line-height: 1;}
 }
 
 @media screen and (max-width: 575px) {
-	.all-wrapper {padding: 8% 3%;}
-	.title-wrapper .title {font-size: 2em;}
-	.title-wrapper .img-wrap {width: 80px; transform: translate(8px, -3px);}
+	.all-wrapper {padding: 8% 3%; width: 100%; }
+	.background-wrapper {width: 100%;}
 	.daily-container {padding: 1.5em 1em;}
 
 	

@@ -93,7 +93,7 @@ function onCreateMarker(r) {
 	content += '</div>';
 	content += '<div class="cont-wrap">';
 	content += '<div class="name">'+city[0].name+'</div>';
-	content += '<div class="temp">'+r.main.temp+'˚</div>';
+	//content += '<div class="temp">'+r.main.temp+'˚</div>';
 	content += '</div>';
 	content += '<i class="fa fa-caret-down"></i>';
 	content += '</div>';
@@ -148,7 +148,7 @@ function onGetWeekly(r) {
 	// Hourly
 	for(var i in r.hourly) {
 		html  = '<div class="swiper-slide">';
-		html += '	<div class="time-wrap">'+((i == 0) ? '현재' : moment(r.hourly[i].dt*1000).format('H')+'시('+moment(r.hourly[i].dt*1000).format('D')+'일)')+'</div>';
+		html += '	<div class="time-wrap">'+((i == 0) ? '현재' : moment(r.hourly[i].dt*1000).format('H')+'시')+'</div>';
 		html += '	<div class="img-wrap">';
 		html += '		<img src="http://openweathermap.org/img/wn/'+r.hourly[i].weather[0].icon+'.png" class="mw-100">';
 		html += '	</div>';
@@ -298,5 +298,5 @@ function updateBg(icon) {
 			bg = '50n-bg.jpg';
 			break;
 	}
-	$(".all-wrapper").css('background-image', 'url(../img/'+bg+')');
+	$(".background-wrapper").css('background-image', 'url(../img/'+bg+')');
 }
