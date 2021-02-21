@@ -9,7 +9,9 @@ html, body {font-family: 'Sunflower', sans-serif; line-height: 1; font-weight: l
 .bt-next {right: -5px;}
 
 /******** 전체 *********/
-.background-wrapper {width: 100%; min-height: 100vh; background-repeat: no-repeat; background-position: center; background-size: cover; position: relative; color: #f9f9f9; position:relative; }
+.background-wrapper {
+	width: 100%; min-height: 100vh; background-repeat: no-repeat; background-position: center; background-size: cover; position: relative; color: #f9f9f9; position:relative; 
+}
 
 .all-wrapper {width: 80%; min-height: 100vh; position: absolute; padding: 3%; top: 0; right: 0;}
 /******** 타이틀 *********/
